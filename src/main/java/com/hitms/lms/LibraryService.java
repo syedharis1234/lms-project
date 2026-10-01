@@ -81,4 +81,21 @@ public class LibraryService {
     public Map<String, Integer> catalogue() {
         return Map.copyOf(catalogue);
     }
+
+    /**
+     * Issues one copy of the given title.
+     *
+     * @param availableCopies the copies left before the issue
+     * @param title the title being issued
+     * @return the copies left after the issue
+     * @throws BookUnavailableException when availableCopies is zero or less
+     */
+    public static int issueBook(int availableCopies, String title)
+            throws BookUnavailableException {
+        if (availableCopies <= 0) {
+            throw new BookUnavailableException("'" + title + "' has no copies available.");
+        }
+
+        return availableCopies - 1;
+    }
 }
