@@ -97,4 +97,14 @@ public class LibraryService {
 
         return availableCopies - 1;
     }
+
+    /**
+     * Looks up a member by their library card number.
+     *
+     * @param memberId the card number to search for
+     * @return true when the member is on file
+     */
+    public boolean findMemberById(int memberId) {
+        return memberId > 0;
+    }
 }

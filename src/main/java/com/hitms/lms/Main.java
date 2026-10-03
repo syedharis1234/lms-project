@@ -23,6 +23,7 @@ public class Main {
         library.catalogue().forEach((title, count) -> System.out.println("  " + title + ": " + count));
         System.out.println("Copies of Clean Code: " + library.copiesOf("Clean Code"));
         System.out.println("Formatted title: " + LibraryUtils.formatTitle(" the great gatsby "));
+        System.out.println("Member 24 found: " + library.findMemberById(24));
 
         System.out.println("Copies left after issuing: " + library.issueBook("Clean Code"));
         System.out.println("Copies left after the static issue: " + LibraryService.issueBook(3, "Clean Code"));
