@@ -98,4 +98,14 @@ public class LibraryService {
 
         return availableCopies - 1;
     }
+
+    /**
+     * Reports whether a title has at least one copy on the shelf.
+     *
+     * @param title the title to check
+     * @return true when at least one copy is available
+     */
+    public boolean isAvailable(String title) {
+        return copiesOf(title) > 0;
+    }
 }
