@@ -26,6 +26,23 @@ public class LibraryService {
     }
 
     /**
+     * Issues one copy of a title that is already in the catalogue.
+     *
+     * @param title the title to issue
+     * @return the copies left afterwards
+     * @throws BookUnavailableException when the title has no copies left
+     */
+    public int issueBook(String title) throws BookUnavailableException {
+        if (copiesOf(title) <= 0) {
+            throw new BookUnavailableException("'" + title + "' has no copies available.");
+        }
+
+        catalogue.merge(title, -1, Integer::sum);
+
+        return catalogue.get(title);
+    }
+
+    /**
      * Takes one copy back into the catalogue.
      *
      * @param title the title being returned
@@ -63,5 +80,21 @@ public class LibraryService {
      */
     public Map<String, Integer> catalogue() {
         return Map.copyOf(catalogue);
+    }
+
+    /**
+     * Issues one copy of the given title.
+     *
+     * @param availableCopies the copies left before the issue
+     * @param title the title being issued
+     * @return the copies left after the issue
+     * @throws BookUnavailableException when availableCopies is zero or less
+     */
+    public static int issueBook(int availableCopies, String title) throws BookUnavailableException {
+        if (availableCopies <= 0) {
+            throw new BookUnavailableException("'" + title + "' has no copies available.");
+        }
+
+        return availableCopies - 1;
     }
 }
