@@ -83,7 +83,7 @@ public class LibraryService {
     }
 
     /**
-     * Issues one copy of the given title.
+     * Issues one copy of the given title from the catalogue
      *
      * @param availableCopies the copies left before the issue
      * @param title the title being issued
