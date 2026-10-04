@@ -26,7 +26,7 @@ public class LibraryService {
     }
 
     /**
-     * Issues one copy of a title that is already in the catalogue.
+     * Issue a single copy; throws BookUnavailableException if none left
      *
      * @param title the title to issue
      * @return the copies left afterwards
