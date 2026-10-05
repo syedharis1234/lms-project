@@ -26,7 +26,7 @@ public class LibraryService {
     }
 
     /**
-     * Issues one copy of a title that is already in the catalogue.
+     * Issues one copy of the given title from the catalogue
      *
      * @param title the title to issue
      * @return the copies left afterwards
