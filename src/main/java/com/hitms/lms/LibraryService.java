@@ -83,7 +83,8 @@ public class LibraryService {
     }
 
     /**
-     * Issues one copy of the given title from the catalogue
+     * Issues one copy of the given title; throws BookUnavailableException
+     * if no copies are left in the catalogue.
      *
      * @param availableCopies the copies left before the issue
      * @param title the title being issued
