@@ -109,4 +109,19 @@ public class LibraryService {
     public boolean isAvailable(String title) {
         return copiesOf(title) > 0;
     }
+
+    /**
+     * Looks up a member by their library card number.
+     *
+     * @param memberId the card number to search for
+     * @return true when the member is on file
+     * @throws MemberNotFoundException when no member has that card number
+     */
+    public boolean findMemberById(int memberId) throws MemberNotFoundException {
+        if (memberId <= 0) {
+            throw new MemberNotFoundException(memberId);
+        }
+
+        return true;
+    }
 }

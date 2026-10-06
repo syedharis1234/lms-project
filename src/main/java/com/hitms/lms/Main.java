@@ -28,6 +28,13 @@ public class Main {
         System.out.println("Copies left after a static issue: " + LibraryService.issueBook(3, "Clean Code"));
 
         try {
+            System.out.println("Member 24 found: " + library.findMemberById(24));
+            library.findMemberById(0);
+        } catch (MemberNotFoundException e) {
+            System.out.println("Lookup failed: " + e.getMessage());
+        }
+
+        try {
             LibraryService.issueBook(0, "Clean Code");
         } catch (BookUnavailableException e) {
             System.out.println("Transaction failed: " + e.getMessage());
