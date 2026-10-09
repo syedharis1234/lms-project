@@ -104,8 +104,13 @@ public class LibraryService {
      *
      * @param memberId the card number to search for
      * @return true when the member is on file
+     * @throws MemberNotFoundException when no member has that card number
      */
-    public boolean findMemberById(int memberId) {
-        return memberId > 0;
+    public boolean findMemberById(int memberId) throws MemberNotFoundException {
+        if (memberId <= 0) {
+            throw new MemberNotFoundException(memberId);
+        }
+
+        return true;
     }
 }
