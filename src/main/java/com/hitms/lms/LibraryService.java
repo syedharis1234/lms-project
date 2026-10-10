@@ -124,4 +124,15 @@ public class LibraryService {
 
         return true;
     }
+
+    /**
+     * Counts how many copies of a title are still out on loan.
+     *
+     * @param title the title to check
+     * @param onLoan how many copies are currently issued
+     * @return the number of copies not yet returned
+     */
+    public int outstanding(String title, int onLoan) {
+        return Math.max(copiesOf(title) - onLoan, 0);
+    }
 }
