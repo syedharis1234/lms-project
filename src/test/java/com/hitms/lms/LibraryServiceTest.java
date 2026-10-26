@@ -2,6 +2,7 @@ package com.hitms.lms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,32 @@ class LibraryServiceTest {
     @Test
     void staticIssueBookTakesOneAway() throws BookUnavailableException {
         assertEquals(2, LibraryService.issueBook(3, "Clean Code"));
+    }
+
+    @Test
+    void issueBookThrowsWhenNoCopiesAreLeft() {
+        LibraryService service = new LibraryService();
+        service.addBook("Clean Code", 0);
+        assertThrows(BookUnavailableException.class, () -> service.issueBook("Clean Code"));
+    }
+
+    @Test
+    void issueUnknownTitleThrows() {
+        LibraryService service = new LibraryService();
+        assertThrows(BookUnavailableException.class, () -> service.issueBook("Never Added"));
+    }
+
+    @Test
+    void addBookRejectsANegativeCount() {
+        LibraryService service = new LibraryService();
+        assertThrows(IllegalArgumentException.class, () -> service.addBook("Clean Code", -2));
+    }
+
+    @Test
+    void removeBookDropsTheTitle() {
+        LibraryService service = new LibraryService();
+        service.addBook("Clean Code", 1);
+        assertTrue(service.removeBook("Clean Code"));
+        assertEquals(0, service.copiesOf("Clean Code"));
     }
 }
