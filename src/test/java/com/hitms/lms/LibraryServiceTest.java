@@ -60,7 +60,7 @@ class LibraryServiceTest {
     void issueBookReportsTheCopiesLeft() throws BookUnavailableException {
         LibraryService service = new LibraryService();
         service.addBook("Clean Code", 3);
-        assertEquals(3, service.issueBook("Clean Code"));
+        assertEquals(2, service.issueBook("Clean Code"));
     }
 
     @Test
