@@ -14,9 +14,9 @@ public class LibraryLog {
     private static final Logger LOGGER = Logger.getLogger(LibraryLog.class.getName());
 
     /**
-     * Points the logger at library.log and reports the current level.
+     * Points the logger at the given log file and reports the current level.
      *
-     * @param args not used
+     * @param logFile the file the log lines are appended to
      * @throws IOException when the log file cannot be opened
      */
     public static void start(String logFile) throws IOException {
