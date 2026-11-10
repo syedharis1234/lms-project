@@ -5,6 +5,10 @@ package com.hitms.lms;
  */
 public class BookUnavailableException extends Exception {
 
+    /** Fixed so the class keeps a stable form when it is
+     *  serialised by a framework. */
+    private static final long serialVersionUID = 1L;
+
     /**
      * Creates the exception with a message explaining the failure.
      *

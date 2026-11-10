@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit;
 public class LibraryUtils {
 
     private LibraryUtils() {
-        // Utility class, never built.
+        // Held private so the helpers are only reached statically.
     }
 
     /**
