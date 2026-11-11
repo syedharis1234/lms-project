@@ -4,6 +4,9 @@ import com.hitms.lms.util.LibraryUtils;
 
 /**
  * Entry point of the library application.
+ *
+ * <p>The run walks the whole demonstration: add a book, issue it, take it back,
+ * and then trigger an overdue notice through the observer pattern.</p>
  */
 public class Main {
 
@@ -25,7 +28,7 @@ public class Main {
         System.out.println("Formatted title: " + LibraryUtils.formatTitle(" the great gatsby "));
 
         System.out.println("Copies left after issuing: " + library.issueBook("Clean Code"));
-        System.out.println("Copies left after a static issue: " + LibraryService.issueBook(3, "Clean Code"));
+        System.out.println("Copies left after returning: " + library.returnBook("Clean Code"));
 
         try {
             System.out.println("Member 24 found: " + library.findMemberById(24));
@@ -39,5 +42,24 @@ public class Main {
         } catch (BookUnavailableException e) {
             System.out.println("Transaction failed: " + e.getMessage());
         }
+
+        demonstrateOverdueNotice();
+    }
+
+    /**
+     * Builds an item through the factory and reports it as overdue.
+     */
+    private static void demonstrateOverdueNotice() {
+        LibraryDatabase database = LibraryDatabase.getInstance();
+        LibraryItem item = LibraryItemFactory.createLibraryItem("dvd", "The Matrix", "D-014");
+        database.records.put(item.itemId, item.title);
+
+        Loan loan = new Loan(item, "Aisha Khan");
+        loan.addObserver((overdue, memberName) ->
+                System.out.println("[EMAIL] " + memberName
+                        + ", please return '" + overdue + "' -- it is overdue."));
+
+        System.out.println("\nOverdue notice:");
+        loan.notifyOverdue();
     }
 }
